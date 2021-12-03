@@ -3,122 +3,123 @@ public class Bird
 
 //Instance data
 private String species;
-private double beakLength;
-private int age;
+private double wingLength;
+private int speed;
 private boolean genderF; //female = true
 
+
 //Constructor
-public Bird (String sp, double b, int a, boolean g)
+public Bird (String sp, double w, int s, boolean gf)
 {
   setSpecies(sp);
-  setBeakLength(b);
-  setAge(a);
-  setGenderF(g);
+  setWingLength(w);
+  setSpeed(s);
+  setGenderF(gf);
 }
+
 
 //Default Constructor
 public Bird()
 {
-  this("Pigeon", 3.42, 2, false);
+  this("Pigeon", 3.42, 75, false);
 }
 
-//accessor methods
+
+//Accessor methods
 public String getSpecies()
 {
   return species;
 }
-public double getBeakLength()
+public double getWingLength()
 {
-  return beakLength;
+  return wingLength;
 }
-public int getAge()
+public int getSpeed()
 {
-  return age;
+  return speed;
 }
 public boolean getGenderF()
 {
   return genderF;
 }
 
-//mutator methods
+
+//Mutator methods
 public void setSpecies(String sp)
 {
   species = sp;
 }
-public void setBeakLength(double b)
+public void setWingLength(double w)
 {
-  beakLength = b;
+  wingLength = w;
 }
-public void setAge(int a)
+public void setSpeed(int s)
 {
-  age = a;
+  speed = s;
 }
-public void setGenderF(boolean g)
+public void setGenderF(boolean gf)
 {
-  genderF = g;
+  genderF = gf;
 }
 
-//other methods
-public String migrate()
+
+//Other method #1
+//calculates the time it takes for Bird to fly an input distance based on its set speed
+public void flyTime(int dist)
 {
-  
+  double minsFlying = ((double) dist/ (double) speed);
+  System.out.println("It took "  + minsFlying + " minutes to travel " + dist + " miles.");
 }
-//what would i want to do with a bird:
-//migrate
 
 
-
+//Other method #2
+//Simulates the bird laying 1 to 5 eggs randomly, given that it is female
 public int layEggs()//what would it take in
-//lay getEggs
 {
-  if(layEggs)
+  if(genderF)
   {
-    Random number 1 - 10
+    int eggs = ((int) (Math.random() * (5 - 1) + 1) + 1);
+    return eggs;
+  }
+  else
+  {
+    return 0;
   }
 }
-//if its true
+  
 
 //toString
+public String toString()
+{
+  String str = "";
+  str = "A ";
+  if(genderF)
+  {
+    str += "female ";
+  }
+  else
+  {
+    str += "male ";
+  }
 
-//check for equality
-//two birds are equal if they are the same species and 
-
-
-
-
-
-
-
-
+  str +=  species + " with " + wingLength + " inch wings can fly at a maximum speed of " + speed + " miles per hour.";
+  return str;
 }
 
 
+//Check for equality
+//two Birds are equal if they are of the same species and gender
+public boolean equals(Bird b)
+{
+  if((this.getSpecies().equals(b.getSpecies())) && (this.getGenderF()==b.getGenderF()))
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
 
 
-
-
-You will be designing a class that will demonstrate a variety of the topics discussed in this Unit
-
--At least 4 pieces of instance data using at least three different variable types (private)
-
--At least 2 constructors one of which must be a Default Constructor that uses the this command to populate the instance data.  
-
-- accessor methods for all of your instance data
-
-- mutator methods for all of your instance data
-
-- 2 additional methods of your choosing (Example: roll from the Die class)
-
-- an equals method that determines what it means for two objects from your class to be equal to each other.  This is not considered to be one of your additional methods
-
-- a toString method that prints all of your instance data like we did in the Book class.  This is not considered to be one of your additional methods
-
-In your class, each item listed above must be labeled with comments.  For example, comments for one of the constructors might look like...
-
-// Constructors
-
-// Instance data
-
-- Include a driver program to demonstrate that your class works as stated.  In other words, you must show evidence that all constructors  and methods work as designed. Also, you must print each object demonstrating proper use of the toString method.
-
-In repl.it, download your project as a zip file. Upload the zip file here.
+}
